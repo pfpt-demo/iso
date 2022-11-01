@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Proofpoint information and Cloud Security</title>
-    <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="./common.css">
 </head>
 <style >
@@ -73,13 +72,7 @@
         white-space: pre-wrap;
     }
 </style>
-<body onload="initPage();">
-	<script>
-		const params = new URLSearchParams(document.location.search);
-		const rurl = params.get("rurl");
-		console.info(rurl);
-		document.getElementById("isoText").innerHTML = rurl;
-	</script>
+<body>
     <div class='background-wrapper'>
       <div id="background-img" class='background-container'>
         <div id="hexagons-view" class='background-hexagon'></div>
@@ -105,10 +98,16 @@
                         id="template-text"
                         style="color:None"
                         class='template-text'
-                    >
-                        You are blocked from browsing to this website by company policy.
-						<p>However if you wish to access this site you can do so in an Isolated Session by clicking <a href="https://proofpointisolation.com/browser?url="<span id="rurlText"></span>">Here</a></p>
-                    </div>
+                    >	
+						<p id="isoText">
+                    	<script>
+							const params = new URLSearchParams(document.location.search);
+							const rurl = params.get("rurl");
+							console.info(rurl);
+							isoCode = "You are blocked from browsing to<br><b>"+rurl+"</b></br>by company policy.<p><b>If access is required, this can be done in a safe environment via Proofpoint Isolation and by clicking <a href='https://proofpointisolation.com/browser?url="+rurl+"'>Here</a></b>";
+							document.getElementById("isoText").innerHTML = isoCode;
+						</script>
+					</div>
                     <div class='footnote'> For more information about company policy contact your IT administrator.</div>
                     <div id="email-section" class="reply-box">
                         <div className="contest-email">
@@ -125,6 +124,5 @@
       </div>
     </div>
   </div>
-<script src="./blocked.js"></script>
 </body>
 </html>
