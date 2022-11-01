@@ -74,6 +74,11 @@
     }
 </style>
 <body onload="initPage();">
+	<script>
+		const params = new URLSearchParams(document.location.search);
+		const rurl = params.get("rurl");
+		console.info(rurl);
+	</script>
     <div class='background-wrapper'>
       <div id="background-img" class='background-container'>
         <div id="hexagons-view" class='background-hexagon'></div>
