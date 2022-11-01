@@ -1,4 +1,4 @@
-body {
+bbody {
     margin: 0;
     padding: 0;
     font-family: Roboto;
@@ -7,12 +7,12 @@ body {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    src: url('./assets/Roboto-Regular.ttf') format('woff');
+    src: url('Roboto-Regular.ttf') format('woff');
 }
 @font-face {
     font-family: 'Roboto-Bold';
     font-weight: 700;
-    src: url('./assets/Roboto-Bold.ttf') format('woff') ;
+    src: url('Roboto-Bold.ttf') format('woff') ;
 }
 @media (max-height: 750px) and (min-width: 620px) {
     .background-wrapper .background-children-container {
