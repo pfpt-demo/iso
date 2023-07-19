@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>URL Redirected to Proofpoint Isolation</title>
+<!-- We are going to use JQuery to make life a little easier, this can be done -->
+<!-- without it, but then it's not so easy, or fun.  Use whatever library you  -->
+<!-- are comfortable with.                                                     -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/purl/2.3.1/purl.min.js"></script>
+
+<script language="Javascript">
+// It is very important to unescape the information in the query parameters as they will
+// be URL encoded.  unescape lends consistent results for the purposes of this exercise
+
+/* Rot13 implementation to decode domain data */
+
+/*
+  rot13.js
+  ROT13 + ROT5 Encoder/Decoder
+  http://rot47.net
+  http://rot47.net/rot13.html
+*/
+<!-- Start of Proofpoint Isolation Code -->
+function rot13(str) 
+{
+  return str.replace(/[a-zA-Z]/g, function(c){
+    return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+  });
+}
+
+$(function() {
+    // Get the domain query parameter, use www.proofpoint.com if we don't have one.
+    var domain = $.url().param("url");
+	
+	if (domain == null) {
+		console.log("URL parameter is null");
+	}
+	else if (!domain.startsWith("uggc")) {
+		console.log(domain + " this does not have a protocol scheme");
+		window.location.replace("https://proofpointisolation.com/browser?url=" + domain);
+	}
+	else if (domain) {
+        domain = rot13(unescape(domain));
+        // Since http:// is no longer passed, the above is the domain to print
+		console.log(domain + " this is the parsed domain ROT13 decoded");
+		window.location.replace("https://proofpointisolation.com/browser?url=" + domain);
+    }
+    else {
+        domain = "www.proofpoint.com";
+		console.log(domain + " this is the default domain");
+    }
+}
+);
+<!-- End of Proofpoint Isolation Code -->
+</script>
+</head>
+</body>
+</html>
